@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Parking Fee Calculator</title>
+</head>
+<body>
+  <h2>Check the Console (F12) for Parking Fee Output</h2>
+
+  <script>
+    function calculateParkingFee(vehicleType, duration, isVIP) {
+        let fee = 0;
+
+        if (duration <= 0) {
+            console.log("❌ Invalid parking duration.");
+            return;
+        }
+
+        fee = 50;
+        if (duration > 1) {
+            fee += (duration - 1) * 20;
+        }
+
+        if (isVIP) {
+            const discount = fee * 0.30;
+            fee -= discount;
+            console.log(`🚗 ${vehicleType} parked for ${duration} hr(s) [VIP]`);
+            console.log(`30% VIP Discount Applied: -₱${discount.toFixed(2)}`);
+        } else {
+            console.log(`🚗 ${vehicleType} parked for ${duration} hr(s)`);
+        }
+
+        console.log(`Total Parking Fee: ₱${fee.toFixed(2)}\n`);
+    }
+
+    calculateParkingFee("Car", 1, false);
+    calculateParkingFee("SUV", 3, true);
+    calculateParkingFee("Motorcycle", 5, false);
+    calculateParkingFee("Truck", 0, true);
+  </script>
+</body>
+</html>
